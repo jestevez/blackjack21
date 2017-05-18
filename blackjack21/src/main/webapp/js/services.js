@@ -23,7 +23,7 @@ angular.module('starter')
                     websocket.onmessage = function (event) {
 
                         var json = JSON.parse(event.data);
-
+                        
                         if (json.type === "NOTIFICATION") {
                             console.log("NOTIFICATION");
                             $rootScope.notification = JSON.parse(json.message);
@@ -49,9 +49,12 @@ angular.module('starter')
                             }
                             ion.sound.play("water_droplet_2", {loop: 1});
                         }
+                        else if (json.type === "CURRENT_GAME") {
+                             $rootScope.$broadcast('rootScope:broadcast', ['blackjack21', JSON.parse(event.data)]);
+                        }
 
 
-                        console.log(event.data);
+                        //console.log(event.data);
                     };
                     websocket.onclose = function (event) {
                         console.log(event.data);
@@ -66,7 +69,7 @@ angular.module('starter')
                     console.log("closing socket...");
                     if (websocket !== undefined) {
                         var message = {
-                            "listener": MASTER_ID,
+                            "listener": "listener:" + MASTER_ID,
                             "message": "unsubscribe",
                             "type": "Bye"
                         };
@@ -74,7 +77,20 @@ angular.module('starter')
 //                    websocket.close();
                     }
                     open = 0;
+                },
+                sendMessage: function (msg, type) {
+                    console.log("sendMessage to socket...");
+                    if (websocket !== undefined) {
+                        var message = {
+                            "listener": "listener:" + MASTER_ID,
+                            "message": msg+"",
+                            "type": type
+                        };
+                        websocket.send(JSON.stringify(message));
+//                    websocket.close();
+                    }
                 }
+                
             };
         })
 

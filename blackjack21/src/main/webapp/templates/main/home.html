@@ -4,20 +4,33 @@
     <sidebar></sidebar>
 
     <h1>Blackjack</h1>
-    <div class="hand" style="font-size: 24px;">
-<div class="card rank10C">10 <br> &clubs;</div>
-<div class="card rank9D">9 <br> &diams;</div>
-<div class="card rank8H">8 <br> &hearts;</div>
-<div class="card rankQS">Q <br> &spades;</div>
-<p></p></div>
     
-    <div class="hand" style="font-size: 24px;">
-<div class="card rank10C">10 <br> &clubs;</div>
-<div class="card rank9D">9 <br> &diams;</div>
-<div class="card rank8H">8 <br> &hearts;</div>
-<div class="card rankQS">Q <br> &spades;</div>
-<p></p></div>
     
+    <input type="text" class="form-control text-right" ng-model="bet" required placeholder="0.00">
+    
+    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('DOUBLE')">DOUBLE</button>
+    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('SPLIT')">SPLIT</button>
+    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('HIT')">HIT</button>
+    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('STAND')">STAND</button>
+    <button type="button" class="btn btn-default" ng-click="commad('DRAW')">DRAW</button>
+
+    <h2>{{blackjack21.gameStatus}}</h2>
+
+    <p><i>{{blackjack21.playerHand.score}}</i> </p>
+    
+    <div class="cardstack" style="font-size: 18px;">
+        <div ng-repeat="cards in blackjack21.playerHand.cards" class="card rank{{cards.rank}}{{cards.suit}}">{{cards.rank}} </div>
+        <p></p>
+    </div>
+      
+    <p><i>{{blackjack21.dealerHand.score}}</i> </p>
+    
+    <div class="cardstack" style="font-size: 18px;">
+        <div ng-repeat="cards in blackjack21.dealerHand.cards" class="card rank{{cards.rank}}{{cards.suit}}">{{cards.rank}} </div>
+        <p></p>
+    </div>
+ 
+     
     
     <footerbar></footerbar>
 </div>
