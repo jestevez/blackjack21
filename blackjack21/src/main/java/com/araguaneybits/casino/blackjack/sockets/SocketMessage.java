@@ -26,12 +26,43 @@ import javax.websocket.Decoder;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author jestevez
  */
 public class SocketMessage {
+    private final Logger LOG = LoggerFactory.getLogger(SocketMessage.class);
+    
+    private String listener;
+    private String type;
+    private String message;
+
+    public String getListener() {
+        return listener;
+    }
+
+    public void setListener(String listener) {
+        this.listener = listener;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public static class MessageEncoder implements Encoder.Text<SocketMessage> {
 
@@ -42,7 +73,8 @@ public class SocketMessage {
         @Override
         public String encode(SocketMessage message) throws EncodeException {
             return Json.createObjectBuilder()
-                    .add("username", message.getUsername())
+                    .add("listener", message.getListener())
+                    .add("type", message.getType())
                     .add("message", message.getMessage()).build().toString();
         }
 
@@ -64,8 +96,9 @@ public class SocketMessage {
             SocketMessage message = new SocketMessage();
             JsonReader reader = factory.createReader(new StringReader(str));
             JsonObject json = reader.readObject();
-            message.setUsername(json.getString("username"));
+            message.setListener(json.getString("listener"));
             message.setMessage(json.getString("message"));
+            message.setType(json.getString("type"));
             return message;
         }
 
@@ -77,32 +110,5 @@ public class SocketMessage {
         @Override
         public void destroy() {
         }
-    }
-    private String username;
-    private String message;
-
-    public SocketMessage() {
-    }
-
-    public SocketMessage(String username, String message) {
-        super();
-        this.username = username;
-        this.message = message;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }
