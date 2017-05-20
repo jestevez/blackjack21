@@ -37,22 +37,26 @@ public class Hand {
 
     public void addCard(Card card) {
         this.cards.add(card);
-        calculateScore();
-    }
-
-    private void calculateScore() {
-        score = 0;
-        for (Card card : cards) {
-            // Estoy haciendo una comprobación para asignar 11 o 1 a "A".
-            if ("A".equalsIgnoreCase(card.getRank())) {
-                if (score <= 10) {
-                    score += 11;
-                } else {
-                    score += 1;
-                }
+        if ("A".equalsIgnoreCase(card.getRank())) {
+            if (score <= 10) {
+                score += 11;
             } else {
-                // No es "A" tomar el valor de la carta
-                score += card.getValue();
+                score += 1;
+            }
+        } else {
+            // No es "A" tomar el valor de la carta
+            score += card.getValue();
+        }
+        // Recalcular para cambiar el valor del "A"
+        if(score > 21) {
+            score = 0;
+            for (Card cardTmp : cards) {
+                if ("A".equalsIgnoreCase(cardTmp.getRank())) {
+                     score += 1;
+                } else {
+                    // No es "A" tomar el valor de la carta
+                    score += cardTmp.getValue();
+                }
             }
         }
     }

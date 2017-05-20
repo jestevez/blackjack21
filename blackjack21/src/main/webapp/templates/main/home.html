@@ -8,10 +8,10 @@
     
     <input type="text" class="form-control text-right" ng-model="bet" required placeholder="0.00">
     
-    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('DOUBLE')">DOUBLE</button>
-    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('SPLIT')">SPLIT</button>
-    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('HIT')">HIT</button>
-    <button type="button" class="btn btn-default" ng-disabled="{blackjack21.gameStatus !== 'OPEN'}" ng-click="commad('STAND')">STAND</button>
+    <button type="button" class="btn btn-default" ng-disabled="blackjack21.gameStatus !== 'OPEN'" ng-click="commad('DOUBLE')">DOUBLE</button>
+    <button type="button" class="btn btn-default" ng-disabled="blackjack21.gameStatus !== 'OPEN'" ng-click="commad('SPLIT')">SPLIT</button>
+    <button type="button" class="btn btn-default" ng-disabled="blackjack21.gameStatus !== 'OPEN'" ng-click="commad('HIT')">HIT</button>
+    <button type="button" class="btn btn-default" ng-disabled="blackjack21.gameStatus !== 'OPEN'" ng-click="commad('STAND')">STAND</button>
     <button type="button" class="btn btn-default" ng-click="commad('DRAW')">DRAW</button>
 
     <h2>{{blackjack21.gameStatus}}</h2>

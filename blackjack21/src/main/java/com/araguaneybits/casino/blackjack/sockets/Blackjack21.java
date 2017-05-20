@@ -77,7 +77,7 @@ public class Blackjack21 implements Serializable {
     }
     
     public void hitDealer() {
-        if(dealerHand.getScore() <=21 && dealerHand.getScore() > playerHand.getScore()) {
+        if(dealerHand.getScore() <=21 && dealerHand.getScore() >= playerHand.getScore()) {
             // El crupier gana
             LOG.info("El crupier gana! Crupier: " +dealerHand.getScore() + " Player: "+playerHand.getScore());
             gameStatus = "LOSE";
