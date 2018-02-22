@@ -5,6 +5,10 @@ El Blackjack, también llamado veintiuna1 o veintiuno, es un juego de cartas, pr
 Aplicación Java Web usando Sockets
 -------------------------------------
 
+Codigo fuente del Post Desarrollando un Juego de BlackJack usando Java WebSockets y AngularJS 
+
+http://www.joseluisestevez.com.ve/index.php/2017/05/20/desarrollando-un-juego-de-blackjack-usando-java-websockets-y-angularjs/
+
 Ejemplo:
 
 https://wss.araguaneybits.com:8443/blackjack21/#/home
