@@ -1,0 +1,10 @@
+# configuration for https://travis-ci.org/jestevez/blackjack21
+sudo: false
+language: java
+jdk: oraclejdk8
+install: true # remove default
+script:
+  - jdk_switcher use openjdk7
+  - cd blackjack21
+  - mvn -q clean package -Pno-network  
+  
