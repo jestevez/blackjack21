@@ -1,9 +1,9 @@
 # configuration for https://travis-ci.org/jestevez/blackjack21
 sudo: false
 language: java
-jdk: oraclejdk8
+jdk: oraclejdk10
 install: true # remove default
 script:
-  - jdk_switcher use openjdk7
+  - jdk_switcher use oraclejdk10
   - mvn -q clean package -Pno-network  
 
